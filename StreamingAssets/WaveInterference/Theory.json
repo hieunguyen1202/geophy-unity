@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Điều kiện giao thoa",
+    "formula": "ΔS = kλ (cực đại), ΔS = (k + 0.5)λ (cực tiểu)",
+    "description": "Hai sóng cùng tần số, cùng biên độ, xuất phát từ hai nguồn kết hợp sẽ giao thoa nếu hiệu đường đi đến một điểm thỏa mãn điều kiện trên.",
+    "variables": {
+      "ΔS": "hiệu đường đi (m)",
+      "λ": "bước sóng (m)",
+      "k": "số nguyên (0, 1, 2, ...)"
+    },
+    "example": "Nếu hiệu đường đi từ hai nguồn đến một điểm là 3λ thì tại đó có cực đại giao thoa."
+  },
+  {
+    "id": 2,
+    "title": "Biên độ tại điểm giao thoa",
+    "formula": "A = 2a|cos(πΔS/λ)|",
+    "description": "Biên độ sóng tại điểm giao thoa phụ thuộc vào hiệu đường đi từ hai nguồn đến điểm đó.",
+    "variables": {
+      "A": "biên độ tổng hợp (m)",
+      "a": "biên độ mỗi sóng (m)",
+      "ΔS": "hiệu đường đi (m)",
+      "λ": "bước sóng (m)"
+    },
+    "example": "Nếu ΔS = λ thì A = 2a|cos(π*1)| = 0 (cực tiểu)."
+  },
+  {
+    "id": 3,
+    "title": "Vị trí cực đại giao thoa",
+    "formula": "d2 - d1 = kλ",
+    "description": "Các điểm có hiệu đường đi từ hai nguồn đến đó là bội số nguyên của bước sóng sẽ xuất hiện cực đại giao thoa.",
+    "variables": {
+      "d2": "khoảng cách từ nguồn 2 đến điểm M (m)",
+      "d1": "khoảng cách từ nguồn 1 đến điểm M (m)",
+      "k": "số nguyên (0, ±1, ±2, ...)",
+      "λ": "bước sóng (m)"
+    },
+    "example": "Nếu d2 - d1 = 2λ thì tại M có cực đại giao thoa bậc 2."
+  },
+  {
+    "id": 4,
+    "title": "Vị trí cực tiểu giao thoa",
+    "formula": "d2 - d1 = (k + 0.5)λ",
+    "description": "Các điểm có hiệu đường đi là số lẻ nửa bước sóng sẽ xuất hiện cực tiểu giao thoa.",
+    "variables": {
+      "d2": "khoảng cách từ nguồn 2 đến điểm M (m)",
+      "d1": "khoảng cách từ nguồn 1 đến điểm M (m)",
+      "k": "số nguyên (0, ±1, ±2, ...)",
+      "λ": "bước sóng (m)"
+    },
+    "example": "Nếu d2 - d1 = 1.5λ thì tại M có cực tiểu giao thoa bậc 1."
+  },
+  {
+    "id": 5,
+    "title": "Khoảng vân giao thoa",
+    "formula": "i = λD/a",
+    "description": "Khoảng cách giữa hai cực đại (hoặc cực tiểu) liên tiếp trên màn quan sát gọi là khoảng vân.",
+    "variables": {
+      "i": "khoảng vân (m)",
+      "λ": "bước sóng (m)",
+      "D": "khoảng cách từ hai nguồn đến màn (m)",
+      "a": "khoảng cách giữa hai nguồn (m)"
+    },
+    "example": "Nếu λ = 0.5mm, D = 2m, a = 1mm thì i = 0.5*2/1 = 1mm."
+  }
+]
