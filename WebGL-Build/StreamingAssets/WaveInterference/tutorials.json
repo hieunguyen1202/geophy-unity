@@ -1,0 +1,49 @@
+{
+    "instructions": [
+        {
+            "id": 1,
+            "title": "Mô tả thí nghiệm",
+            "content": "Trong thí nghiệm này, bạn sẽ mô phỏng hiện tượng giao thoa sóng từ hai nguồn kết hợp. Bạn có thể điều chỉnh bước sóng, biên độ và khoảng cách giữa hai nguồn để quan sát các mẫu giao thoa xuất hiện"
+        },
+        {
+            "id": 2,
+            "title": "Kết quả thí nghiệm",
+            "content": "Khi hai sóng cùng tần số, cùng biên độ giao thoa, chúng sẽ tạo ra các vùng cực đại và cực tiểu trên"
+        },
+        {
+            "id": 3,
+            "title": "Kết quả thí nghiệm",
+            "content": "Các điểm có hiệu đường đi từ hai nguồn đến đó là bội số nguyên của bước sóng sẽ xuất hiện cực đại giao thoa, trong khi các điểm có hiệu đường đi là số lẻ nửa bước sóng sẽ xuất hiện cực tiểu giao thoa."
+        },
+        {
+            "id": 4,
+            "title": "Giải thích",
+            "content": "Khi hai sóng giao thoa, chúng sẽ cộng lại tại các điểm không gian khác nhau. Tại những điểm mà hiệu đường đi là bội số nguyên của bước sóng, biên độ sóng tổng hợp sẽ lớn nhất (cực đại). Ngược lại, tại những điểm có hiệu đường đi là số lẻ nửa bước sóng, biên độ sóng tổng hợp sẽ bằng 0 (cực tiểu)."
+        },
+        {
+            "id": 5,
+            "title": "Giải thích",
+            "content": "Những điểm cách nguồn một khoảng bằng kλ thì dao động đồng pha với nguồn"
+        },
+        {
+            "id": 6,
+            "title": "Giải thích",
+            "content": "Những điểm cách nguồn một khoảng bằng (k + 0.5)λ thì dao động ngược pha với nguồn"
+        },
+        {
+            "id": 7,
+            "title": "Giải thích",
+            "content": "Trong thí nghiệm trên đã dùng hai nguồng sóng giống hệt nhau dao động theo phương vuông góc với mặt nước. Trên mặt nước có những điểm đứng yên, do hai sóng gặp nhau ở đó dao động ngược pha, triệt tiêu nhau. Có những điểm dao động rất mạnh do hai sóng ở đó dao động cùng pha."
+        },
+        {
+            "id": 8,
+            "title": "Giải thích",
+            "content": "Ánh sáng truyền qua những điểm đứng yên không bị cản trở, nên cho ảnh là những hypebol rất sáng. Còn ánh sáng truyền qua những điểm dao động mạnh thì bị tán xạ nên cho ảnh là những đường hypebol nhoè và tối."
+        },
+        {
+            "id": 9,
+            "title": "Giải thích",
+            "content" : "Hiện tượng hai sóng gặp nhau tạo nên những gợn sóng ổn định gọi là hiện tượng giao thoa của hai sóng. Các gợn sóng ổn định gọi là các vân giao thoa."
+        }
+    ]
+}
