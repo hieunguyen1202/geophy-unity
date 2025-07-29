@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geophy Unity - Danh sách mô phỏng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .simulation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .simulation-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .simulation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .simulation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-category {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-content {
+            text-align: center;
+            color: white;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #ffffff33;
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .simulation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌍 Geophy Unity</h1>
+            <p>Chọn một mô phỏng vật lý để bắt đầu khám phá</p>
+        </div>
+
+        <div id="simulationGrid" class="simulation-grid">
+            <!-- Danh sách mô phỏng sẽ được load động từ JavaScript -->
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Geophy Unity - Nền tảng mô phỏng vật lý tương tác</p>
+        </div>
+    </div>
+
+    <div id="loading" class="loading">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h3>Đang tải mô phỏng...</h3>
+            <p>Vui lòng đợi trong giây lát</p>
+        </div>
+    </div>
+
+    <script>
+        // Danh sách các mô phỏng có sẵn - Dựa trên các prefab trong Resources/PhysicTools/
+        const simulations = [
+            {
+                id: "Acceleration",
+                title: "Gia tốc",
+                description: "Mô phỏng chuyển động có gia tốc, nghiên cứu mối quan hệ giữa lực, khối lượng và gia tốc theo định luật Newton II.",
+                category: "Động lực học",
+                icon: "�‍♂️"
+            },
+            {
+                id: "ChangeMachanicalEnergy",
+                title: "Biến đổi năng lượng cơ học",
+                description: "Khám phá sự chuyển đổi giữa động năng và thế năng trong các hệ cơ học khác nhau.",
+                category: "Năng lượng",
+                icon: "⚡"
+            },
+            {
+                id: "CircularMotion",
+                title: "Chuyển động tròn",
+                description: "Mô phỏng chuyển động tròn đều và không đều, nghiên cứu lực hướng tâm và gia tốc hướng tâm.",
+                category: "Động học",
+                icon: "🌀"
+            },
+            {
+                id: "ElectricForce",
+                title: "Lực điện",
+                description: "Trực quan hóa lực tương tác giữa các điện tích và nghiên cứu định luật Coulomb.",
+                category: "Điện học",
+                icon: "⚡"
+            },
+            {
+                id: "FreeFall",
+                title: "Rơi tự do",
+                description: "Mô phỏng chuyển động rơi tự do của vật trong trường trọng lực, nghiên cứu gia tốc trọng trường.",
+                category: "Cơ học",
+                icon: "📉"
+            },
+            {
+                id: "ProjectileMotion",
+                title: "Chuyển động ném xiên",
+                description: "Mô phỏng quỹ đạo của vật được ném xiên trong trường trọng lực, với các yếu tố như vận tốc ban đầu và góc ném.",
+                category: "Động học",
+                icon: "�"
+            }
+        ];
+
+        // Tạo các card mô phỏng
+        function createSimulationCards() {
+            const grid = document.getElementById('simulationGrid');
+            
+            simulations.forEach(sim => {
+                const card = document.createElement('div');
+                card.className = 'simulation-card';
+                card.onclick = () => loadSimulation(sim.id, sim.title);
+                
+                card.innerHTML = `
+                    <div class="card-image">
+                        ${sim.icon}
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">${sim.title}</div>
+                        <div class="card-description">${sim.description}</div>
+                        <div class="card-category">${sim.category}</div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Load mô phỏng được chọn
+        function loadSimulation(toolName, title) {
+            console.log("Loading simulation:", toolName);
+            
+            // Hiển thị loading
+            const loading = document.getElementById('loading');
+            loading.style.display = 'flex';
+            
+            // Tạo URL với parameter tool
+            const unityUrl = `unity-simulation.html?tool=${encodeURIComponent(toolName)}`;
+            console.log("Redirecting to:", unityUrl);
+            
+            // Test URL trước khi redirect
+            setTimeout(() => {
+                // Chuyển hướng đến Unity WebGL build
+                window.location.href = unityUrl;
+            }, 1000);
+        }
+
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function() {
+            createSimulationCards();
+        });
+
+        // Thêm một số hiệu ứng tương tác
+        document.addEventListener('mousemove', function(e) {
+            const cards = document.querySelectorAll('.simulation-card');
+            
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const deltaX = e.clientX - centerX;
+                const deltaY = e.clientY - centerY;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                
+                if (distance < 200) {
+                    const intensity = (200 - distance) / 200;
+                    const rotateX = (deltaY / rect.height) * 10 * intensity;
+                    const rotateY = -(deltaX / rect.width) * 10 * intensity;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${intensity * 20}px)`;
+                } else {
+                    card.style.transform = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

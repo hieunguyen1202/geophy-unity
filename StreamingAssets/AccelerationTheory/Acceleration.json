@@ -1,0 +1,19 @@
+{
+    "instructions": [
+        {
+            "id": 1,
+            "title": "Gia tốc từ vận tốc và thời gian",
+            "content": "Điền cân nặng và vận tốc ban đầu của bạn, sau đó tính gia tốc bằng công thức: a = (v - v0) / t."
+        },
+        {
+            "id": 2,
+            "title": "",
+            "content": "Bấm Start để thực hiện mô phỏng"
+        },
+        {
+            "id": 3,
+            "title": "",
+            "content": "Bấm Stop để dừng mô phỏng"
+        }
+    ]
+}

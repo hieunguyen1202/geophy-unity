@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Tool Parameter</title>
+</head>
+<body>
+    <h1>Debug Tool Parameter</h1>
+    <div id="info"></div>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const toolParam = urlParams.get('tool');
+        
+        document.getElementById('info').innerHTML = `
+            <p><strong>Current URL:</strong> ${window.location.href}</p>
+            <p><strong>Tool Parameter:</strong> ${toolParam || 'No tool parameter found'}</p>
+            <p><strong>All Parameters:</strong> ${window.location.search}</p>
+        `;
+        
+        console.log("URL:", window.location.href);
+        console.log("Tool:", toolParam);
+    </script>
+</body>
+</html>
